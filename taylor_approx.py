@@ -13,8 +13,8 @@ import array_calculus as ac
 
 def taylor(x,f,i,n):
     a = x[i]
-    d = ac.derivative(0,0,1)
+    d = ac.derivative(x[i],x[i]+100,101)
     dfdx = np.matmul(d,f[i])
-    fapprox = f[i] + dfdx*(x-a)
+    fapprox = f[i] + dfdx[0]*(x-a)
     return (x,fapprox)
     
