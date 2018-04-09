@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 
-###
 #Daniel Chang
 #2260161
 #Chang254@mail.chapman.edu
 #PHYS220 Spring 2018
-#HW06
-###Exercise 1
+#CW07
+###Exercise 2
 
 import numpy as np
 import array_calculus as ac
