@@ -42,10 +42,11 @@ def inverse(x):
     return f
 
 def ht(x):
-    if x < 0:
-        f = 0
-    elif x > 0:
-        f = 1
-    elif x == 0:
-        f = .5
+    def f(x):
+        if x < 0:
+            f = 0
+        elif x > 0:
+            f = 1
+        elif x == 0:
+            f = .5
     return f
