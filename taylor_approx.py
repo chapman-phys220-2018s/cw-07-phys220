@@ -15,6 +15,15 @@ def taylor(x,f,i,n):
     a = x[i]
     d = ac.derivative(x[i],x[i]+100,101)
     dfdx = np.matmul(d,f[i])
-    fapprox = f[i] + dfdx[0]*(x-a)
+    
+    if n == 0:
+        fapprox = f[i]
+        
+    elif n == 1:
+        fapprox = f[i] + dfdx[0]*(x-a)
+    elif n == 2:
+        fapprox = f[i] + dfdx[0]*(x-a)
+    else:
+        return print("Invalid n, please choose a new n")
     return (x,fapprox)
     
