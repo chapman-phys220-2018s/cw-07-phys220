@@ -26,4 +26,25 @@ def taylor(x,f,i,n):
     else:
         return print("Invalid n, please choose a new n")
     return (x,fapprox)
-    
+
+def tanh(x):
+    return (np.exp(x)-np.exp(-x))/(np.exp(x)+np.exp(-x))
+
+def f(x):
+    return (x**2/10)+np.sin(2x)/2
+
+def inverse(x):
+    if x = 0:
+        f = np.nan
+    else:
+        f = 1/x
+    return f
+
+def ht(x):
+    if x < 0:
+        f = 0
+    elif x > 0:
+        f = 1
+    elif x == 0:
+        f = .5
+    return f
