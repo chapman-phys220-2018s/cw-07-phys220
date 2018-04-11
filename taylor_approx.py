@@ -10,7 +10,28 @@
 import numpy as np
 import array_calculus as ac
 
+"""taylor_approx:
+This python file contains a function that approximates f(x) using
+a taylor expansion.  Additionally, this file contains the functions to
+be approximated with the taylor expansion.
+"""
+
 def taylor(x,f,i,n):
+    """taylor(x,f,i,n):
+    This function approximates the function f over the domain x,
+    using a taylor expansion centered at x[i]
+    with n+1 terms (starts counting from 0).
+    
+    Args:
+        x: The domain of the function
+        f: The function that will be expanded/approximated
+        i: The ith term in the domain x that the expansion is centered around
+        n: The number of terms in the expansion (n+1 terms)
+    Returns:
+        (x,fapprox): A pair of numpy arrays where x is the original domain array and
+        f approx is the approximation of f over all of the domain points x using the
+        taylor expansion.
+    """
     a = x[i]
     N = np.size(x)
     fa = f[i]*np.ones_like(x)
@@ -25,12 +46,34 @@ def taylor(x,f,i,n):
     return (x,fapprox)
 
 def tanh(x):
+    """tanh(x):
+    This function computes tanh(x)
+    Args:
+        x: Domain points
+    Returns:
+        tanh(x): The values of tanh(x) evaluated over the domain, x.
+    """
     return (np.exp(x)-np.exp(-x))/(np.exp(x)+np.exp(-x))
 
 def f(x):
+    """f(x):
+    This function computes (x**2/10)+sin(2x)/2
+    Args:
+        x: Domain points
+    Returns:
+        f(x): the values of the aforementioned function 
+              evaluated over the domain, x.
+    """
     return (x**2/10)+np.sin(2x)/2
 
 def inverse(x):
+    """inverse(x):
+    This function computes 1/x
+    Args:
+        x: Domain points
+    Returns:
+        1/x: 1/x evaluated over the domain x
+    """
     if x = 0:
         f = np.nan
     else:
@@ -38,6 +81,13 @@ def inverse(x):
     return f
 
 def ht(x):
+    """ht(x)
+    Evaluates the heaviside function
+    Args:
+        x: Domain points
+    Returns:
+        ht(x): Heaviside function evaluated over the domain x
+    """
     if x < 0:
         f = 0
     elif x > 0:
