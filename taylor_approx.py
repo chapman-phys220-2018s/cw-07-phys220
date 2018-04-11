@@ -39,10 +39,11 @@ def taylor(x,f,i,n):
     fact = 1
     fapprox = fa
     dk = np.eye(N)
+    aarr = np.ones_like(x)*a
     for k in range(1,n+1):
         fact = fact*(k)
         dk = np.matmul(dk,d)
-        fapprox += (dk*(x-a)**k)/fact
+        fapprox += (np.matmul(dk,(x-aarr)**k))/fact
     return (x,fapprox)
 
 def tanh(x):
@@ -64,7 +65,7 @@ def f(x):
         f(x): the values of the aforementioned function 
               evaluated over the domain, x.
     """
-    return (x**2/10)+np.sin(2x)/2
+    return (x**2/10)+np.sin(2*x)/2
 
 def inverse(x):
     """inverse(x):
@@ -74,7 +75,7 @@ def inverse(x):
     Returns:
         1/x: 1/x evaluated over the domain x
     """
-    if x = 0:
+    if x == 0:
         f = np.nan
     else:
         f = 1/x
