@@ -64,7 +64,7 @@ def f(x):
         f(x): the values of the aforementioned function 
               evaluated over the domain, x.
     """
-    return (x**2/10)+np.sin(2x)/2
+    return (x**2/10)+np.sin(2*x)/2
 
 def inverse(x):
     """inverse(x):
