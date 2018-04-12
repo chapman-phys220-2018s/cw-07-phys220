@@ -74,7 +74,7 @@ def inverse(x):
     Returns:
         1/x: 1/x evaluated over the domain x
     """
-    if x = 0:
+    if x == 0:
         f = np.nan
     else:
         f = 1/x
