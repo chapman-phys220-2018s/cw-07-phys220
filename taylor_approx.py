@@ -9,6 +9,7 @@
 
 import numpy as np
 import array_calculus as ac
+import matplotlib.pyplot as plt
 
 """taylor_approx:
 This python file contains a function that approximates f(x) using
@@ -115,16 +116,16 @@ def plots(x,f,i,title,z=2):
     plt.axis([-5,5,-z,z])
     plt.legend(loc = "lower right")
     g = f(x)
-    x, approx0 = ta.taylor(x,f(x),i,0)
-    x, approx1 = ta.taylor(x,f(x),i,1)
-    x, approx2 = ta.taylor(x,f(x),i,2)
-    x, approx3 = ta.taylor(x,f(x),i,3)
-    x, approx4 = ta.taylor(x,f(x),i,4)
-    x, approx5 = ta.taylor(x,f(x),i,5)
-    plt.plot(x, f(x), color = "black", label = "function value")
-    plt.plot(x, approx0, color = "blue", label = "approx., n=0")
-    plt.plot(x, approx1, color = "red", label = "approx.,n=1")
-    plt.plot(x, approx2, color = "orange", label = "approx.,n=2")
+    x, approx0 = taylor(x,f(x),i,0)
+    x, approx1 = taylor(x,f(x),i,1)
+    x, approx2 = taylor(x,f(x),i,2)
+    x, approx3 = taylor(x,f(x),i,3)
+    x, approx4 = taylor(x,f(x),i,4)
+    x, approx5 = taylor(x,f(x),i,5)
+    plt.plot(x, f(x), color = "black", label="function value")
+    plt.plot(x, approx0, color = "blue", label="approx., n=0")
+    plt.plot(x, approx1, color = "red", label="approx.,n=1")
+    plt.plot(x, approx2, color = "orange", label="approx.,n=2")
     plt.plot(x, approx3, color = "olive", label = "approx.,n=3")
     plt.plot(x, approx4, color = "purple", label = "approx.,n=4")
     plt.plot(x, approx5, color = "pink", label = "approx.,n=5")
