@@ -95,3 +95,37 @@ def ht(x):
     elif x == 0:
         f = .5
     return f
+
+def plots(x,f,i,title,z=2):
+    """plots(x,f,i,title,z=2)
+    Evaluates taylor expansion approximations and plots values for comparison
+    Args:
+        x (array of floats) : Domain points
+        f (array of floats) : function to be evaluated and approximated
+        i (int) : index of x value to be expanded around
+        title (string) : Title of the graph
+        z (float) : a maximum y-axis value to allow for easier graph viewing, defaults to 2
+    Returns:
+        None
+    """
+    font = {"size":18}
+    plt.title(title)
+    plt.xlabel("x", fontdict = font )
+    plt.ylabel("Range Values", fontdict = font)
+    plt.axis([-5,5,-z,z])
+    plt.legend(loc = "lower right")
+    g = f(x)
+    x, approx0 = ta.taylor(x,f(x),i,0)
+    x, approx1 = ta.taylor(x,f(x),i,1)
+    x, approx2 = ta.taylor(x,f(x),i,2)
+    x, approx3 = ta.taylor(x,f(x),i,3)
+    x, approx4 = ta.taylor(x,f(x),i,4)
+    x, approx5 = ta.taylor(x,f(x),i,5)
+    plt.plot(x, f(x), color = "black", label = "function value")
+    plt.plot(x, approx0, color = "blue", label = "approx., n=0")
+    plt.plot(x, approx1, color = "red", label = "approx.,n=1")
+    plt.plot(x, approx2, color = "orange", label = "approx.,n=2")
+    plt.plot(x, approx3, color = "olive", label = "approx.,n=3")
+    plt.plot(x, approx4, color = "purple", label = "approx.,n=4")
+    plt.plot(x, approx5, color = "pink", label = "approx.,n=5")
+    plt.scatter([x[i],],[g[i]], 50, color ='black')
