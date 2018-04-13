@@ -25,7 +25,10 @@ def derivative(a,b,n):
     Args:
         a (float) : Lower bound of domain
         b (float) : Upper bound of domain
-        n (int, optional) : Number of points in domain"""
+        n (int, optional) : Number of points in domain
+    Returns:
+        d (2-d array of floats) : matrix for finite difference operation
+    """
     x = np.linspace(a,b,n)
     dx = (b-a)/(n-1)
     d = (np.eye(n,n,1)-np.eye(n,n,-1))
