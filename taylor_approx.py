@@ -33,25 +33,16 @@ def taylor(x,f,i,n):
         taylor expansion.
     """
     a = x[i]
-    f = f[i] #added to help with loop in vectorization
     N = np.size(x)
     fa = f[i]*np.ones_like(x)
     D = ac.derivative(x[0],x[N-1],N)
     fact = 1
-    fapprox = fa #This line seems unnecessary. Could do assignment in one line
+    fapprox = fa
     Dk = np.eye(N)
-    def term_calc(x):
-        for k in range(1,n+1):
-            fact = fact*k
-            Dk = np.matmul(Dk,D)
-            f += (dk@((x-a)**k))/fact
-        return f
-    termv = np.vectorize(term_calc)
-    fapprox = termv(x)
-    #for k in range(1,n+1):
-        #fact = fact*k
-        #Dk = np.matmul(Dk,D)
-        #fapprox += (Dk@((x-a)**k))/fact
+    for k in range(1,n+1):
+        fact = fact*k
+        Dk = np.matmul(Dk,D)
+        fapprox += (Dk@f*((x-a)**k))/fact
     return (x,fapprox)
 
 def tanh(x):
