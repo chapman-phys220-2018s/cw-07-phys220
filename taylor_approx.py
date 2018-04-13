@@ -21,7 +21,7 @@ def taylor(x,f,i,n):
     This function approximates the function f over the domain x,
     using a taylor expansion centered at x[i]
     with n+1 terms (starts counting from 0).
-    
+
     Args:
         x: The domain of the function
         f: The function that will be expanded/approximated
@@ -33,16 +33,25 @@ def taylor(x,f,i,n):
         taylor expansion.
     """
     a = x[i]
+    f = f[i] #added to help with loop in vectorization
     N = np.size(x)
     fa = f[i]*np.ones_like(x)
     D = ac.derivative(x[0],x[N-1],N)
     fact = 1
-    fapprox = fa
+    fapprox = fa #This line seems unnecessary. Could do assignment in one line
     Dk = np.eye(N)
-    for k in range(1,n+1):
-        fact = fact*(k)
-        Dk = np.matmul(Dk,D)
-        fapprox += (Dk@((x-a)**k))/fact
+    def term_calc(x):
+        for k in range(1,n+1):
+            fact = fact*k
+            Dk = np.matmul(Dk,D)
+            f += (dk@((x-a)**k))/fact
+        return f
+    termv = np.vectorize(term_calc)
+    fapprox = termv(x)
+    #for k in range(1,n+1):
+        #fact = fact*k
+        #Dk = np.matmul(Dk,D)
+        #fapprox += (Dk@((x-a)**k))/fact
     return (x,fapprox)
 
 def tanh(x):
