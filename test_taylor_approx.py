@@ -19,11 +19,29 @@ import numpy as np
 import taylor_approx as tp
 import nose
 
-def test_taylor_approx_n():
+def test_taylor_approx_acc():
     x = np.array([3,4,5,6,7,8])
-    f = tp.f(3)
-    trial = tp.taylor(x,f,2,100)
-    actual = 
-    print("First Trial: ", trialn1)
-    print("Second Trial: ", trialn2)
-    np.testing.assert_not_equal(trialn1, trialn2)
+    f = tp.tanh(x)
+    trial = tp.taylor(x,f,0,100)[1]
+    actual = tp.tanh(3)
+    print("Trial: ", trial[0])
+    print("Actual: ", actual)
+    nose.tools.assert_almost_equal(actual, trial[0], 2)
+    
+    x = np.array([3,4,5,6,7,8])
+    func = np.vectorize(tp.inverse)
+    f = func(x)
+    trial = tp.taylor(x,f,0,100)[1]
+    actual = tp.inverse(3)
+    print("Trial: ", trial[0])
+    print("Actual: ", actual)
+    nose.tools.assert_almost_equal(actual, trial[0], 2)
+    
+    x = np.array([3,4,5,6,7,8])
+    func = np.vectorize(tp.f)
+    f = func(x)
+    trial = tp.taylor(x,f,0,100)[1]
+    actual = tp.f(3)
+    print("Trial: ", trial[0])
+    print("Actual: ", actual)
+    nose.tools.assert_almost_equal(actual, trial[0], 2)

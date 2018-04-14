@@ -32,7 +32,6 @@ def derivative(a,b,n):
     x = np.linspace(a,b,n)
     dx = (b-a)/(n-1)
     d = (np.eye(n,n,1)-np.eye(n,n,-1))
-    print(d)
     d[0][0] = -1
     d[-1][-1] = 1
     d[0:][0] = d[0:][0]/dx

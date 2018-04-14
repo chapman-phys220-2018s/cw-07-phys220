@@ -43,7 +43,7 @@ def taylor(x,f,i,n):
     for k in range(1,n+1):
         fact = fact*k
         Dk = np.matmul(Dk,D)
-        fapprox += (Dk@f*((x-a)**k))/fact
+        fapprox += (np.matmul(np.matmul(Dk,fa),((x-a)**k)))/fact
     return (x,fapprox)
 
 def tanh(x):
@@ -65,7 +65,7 @@ def f(x):
         f(x): the values of the aforementioned function 
               evaluated over the domain, x.
     """
-    return (x**2/10)+np.sin(2*x)/2
+    return (x**2/10)+(np.sin(2*x)/2)
 
 def inverse(x):
     """inverse(x):
