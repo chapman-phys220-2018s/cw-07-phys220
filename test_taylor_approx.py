@@ -45,3 +45,30 @@ def test_taylor_approx_acc():
     print("Trial: ", trial[0])
     print("Actual: ", actual)
     nose.tools.assert_almost_equal(actual, trial[0], 2)
+    
+def test_taylor_approx_x():
+    x = np.array([3,4,5,6,7,8])
+    f = tp.tanh(x)
+    trial = tp.taylor(x,f,0,100)[0]
+    actual = x
+    print("Trial: ", trial)
+    print("Actual: ", actual)
+    np.testing.assert_equal(actual, trial)
+    
+    x = np.array([3,4,5,6,7,8])
+    func = np.vectorize(tp.inverse)
+    f = func(x)
+    trial = tp.taylor(x,f,0,100)[0]
+    actual = x
+    print("Trial: ", trial)
+    print("Actual: ", actual)
+    np.testing.assert_equal(actual, trial)
+    
+    x = np.array([3,4,5,6,7,8])
+    func = np.vectorize(tp.f)
+    f = func(x)
+    trial = tp.taylor(x,f,0,100)[0]
+    actual = x
+    print("Trial: ", trial)
+    print("Actual: ", actual)
+    np.testing.assert_equal(actual, trial)
