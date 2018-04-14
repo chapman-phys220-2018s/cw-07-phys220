@@ -16,16 +16,19 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
-    
+
 def derivative(a,b,n):
     """ derivative(a,b,n) 
     generates a matrix of the derivative with the 
     following arguments.
-    
+
     Args:
         a (float) : Lower bound of domain
         b (float) : Upper bound of domain
-        n (int, optional) : Number of points in domain"""
+        n (int, optional) : Number of points in domain
+    Returns:
+        d (2-d array of floats) : matrix for finite difference operation
+    """
     x = np.linspace(a,b,n)
     dx = (b-a)/(n-1)
     d = (np.eye(n,n,1)-np.eye(n,n,-1))
@@ -41,7 +44,7 @@ def f(a,b,n):
     """f(a,b,n)
     Returns an array of values satisfying the squared 
     function
-    
+
     Args:
         a (float) : Lower bound of domain
         b (float) : Upper bound of domain
@@ -53,12 +56,12 @@ def s(a,b,n):
     """s(a,b,n)
     Returns the domain and range of the sin(x) function
     stored as a pair of numpy arrays (x,sx)
-    
+
     Args:
         a (float) : Lower bound of domain
         b (float) : Upper bound of domain
         n (int, optional) : Number of points in domain
-        
+
     Return:
         (x, sx) : Pair of numpy arrays of float64
             x  : [a, ..., b] Array of n equally spaced float64 between a and b
@@ -76,12 +79,12 @@ def g(a,b,n):
     """g(a,b,n)
     Returns the domain and range of the gaussian function
     stored as a pair of numpy arrays (x,g)
-    
+
     Args:
         a (float) : Lower bound of domain
         b (float) : Upper bound of domain
         n (int, optional) : Number of points in domain
-        
+
     Return:
         (x, g) : Pair of numpy arrays of float64
             x  : [a, ..., b] Array of n equally spaced float64 between a and b

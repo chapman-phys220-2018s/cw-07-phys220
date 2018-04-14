@@ -9,6 +9,7 @@
 
 import numpy as np
 import array_calculus as ac
+import matplotlib.pyplot as plt
 
 """taylor_approx:
 This python file contains a function that approximates f(x) using
@@ -21,7 +22,7 @@ def taylor(x,f,i,n):
     This function approximates the function f over the domain x,
     using a taylor expansion centered at x[i]
     with n+1 terms (starts counting from 0).
-    
+
     Args:
         x: The domain of the function
         f: The function that will be expanded/approximated
@@ -35,15 +36,14 @@ def taylor(x,f,i,n):
     a = x[i]
     N = np.size(x)
     fa = f[i]*np.ones_like(x)
-    d = ac.derivative(x[0],x[N-1],N)
+    D = ac.derivative(x[0],x[N-1],N)
     fact = 1
     fapprox = fa
-    dk = np.eye(N)
-    aarr = np.ones_like(x)*a
+    Dk = np.eye(N)
     for k in range(1,n+1):
-        fact = fact*(k)
-        dk = np.matmul(dk,d)
-        fapprox += (np.matmul(dk,(x-aarr)**k))/fact
+        fact = fact*k
+        Dk = np.matmul(Dk,D)
+        fapprox += (Dk@f*((x-a)**k))/fact
     return (x,fapprox)
 
 def tanh(x):
@@ -96,3 +96,37 @@ def ht(x):
     elif x == 0:
         f = .5
     return f
+
+def plots(x,f,i,title,z=2):
+    """plots(x,f,i,title,z=2)
+    Evaluates taylor expansion approximations and plots values for comparison
+    Args:
+        x (array of floats) : Domain points
+        f (array of floats) : function to be evaluated and approximated
+        i (int) : index of x value to be expanded around
+        title (string) : Title of the graph
+        z (float) : a maximum y-axis value to allow for easier graph viewing, defaults to 2
+    Returns:
+        None
+    """
+    font = {"size":18}
+    plt.title(title)
+    plt.xlabel("x", fontdict = font )
+    plt.ylabel("Range Values", fontdict = font)
+    plt.axis([-5,5,-z,z])
+    plt.legend(loc = "lower right")
+    g = f(x)
+    x, approx0 = taylor(x,f(x),i,0)
+    x, approx1 = taylor(x,f(x),i,1)
+    x, approx2 = taylor(x,f(x),i,2)
+    x, approx3 = taylor(x,f(x),i,3)
+    x, approx4 = taylor(x,f(x),i,4)
+    x, approx5 = taylor(x,f(x),i,5)
+    plt.plot(x, f(x), color = "black", label="function value")
+    plt.plot(x, approx0, color = "blue", label="approx., n=0")
+    plt.plot(x, approx1, color = "red", label="approx.,n=1")
+    plt.plot(x, approx2, color = "orange", label="approx.,n=2")
+    plt.plot(x, approx3, color = "olive", label = "approx.,n=3")
+    plt.plot(x, approx4, color = "purple", label = "approx.,n=4")
+    plt.plot(x, approx5, color = "pink", label = "approx.,n=5")
+    plt.scatter([x[i],],[g[i]], 50, color ='black')
