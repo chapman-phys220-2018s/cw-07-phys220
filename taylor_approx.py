@@ -43,7 +43,8 @@ def taylor(x,f,i,n):
     for k in range(1,n+1):
         fact = fact*k
         Dk = np.matmul(Dk,D)
-        fapprox += (np.matmul(np.matmul(Dk,fa),((x-a)**k)))/fact
+        #fapprox += (np.matmul(np.matmul(Dk,fa),((x-a)**k)))/fact
+        fapprox = np.add(fapprox, (np.matmul(np.matmul(Dk,fa),((x-a)**k)))/fact, out=fapprox, casting="unsafe")
     return (x,fapprox)
 
 def tanh(x):

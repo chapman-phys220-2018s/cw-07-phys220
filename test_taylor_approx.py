@@ -22,7 +22,7 @@ import nose
 def test_taylor_approx_acc():
     x = np.array([3,4,5,6,7,8])
     f = tp.tanh(x)
-    trial = tp.taylor(x,f,0,100)[1]
+    trial = tp.taylor(x,f,0,100)[1] #returns 2 arrays, takes the second entry
     actual = tp.tanh(3)
     print("Trial: ", trial[0])
     print("Actual: ", actual)
