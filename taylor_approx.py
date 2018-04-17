@@ -75,11 +75,13 @@ def inverse(x):
     Returns:
         1/x: 1/x evaluated over the domain x
     """
-    if x == 0:
-        f = np.nan
-    else:
-        f = 1/x
-    return f
+    g = np.ones_like(x)
+    for i in range(np.size(x)-1):
+        if x[i] == 0:
+            g[i] = np.nan
+        else:
+            g[i] = 1/x[i]
+    return g
 
 def ht(x):
     """ht(x)
@@ -89,13 +91,15 @@ def ht(x):
     Returns:
         ht(x): Heaviside function evaluated over the domain x
     """
-    if x < 0:
-        f = 0
-    elif x > 0:
-        f = 1
-    elif x == 0:
-        f = .5
-    return f
+    g = np.ones_like(x)
+    for i in range(np.size(x)-1):
+        if x[i] < 0:
+            g[i] = 0
+        elif x[i] > 0:
+            g[i] = 1
+        elif x[i] == 0:
+            g[i] = .5
+    return g
 
 def plots(x,f,i,title,z=2):
     """plots(x,f,i,title,z=2)
